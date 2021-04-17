@@ -1,0 +1,17 @@
+{
+  "name": "PortableItemSpawner",
+  "authors": [
+    "M'aiq"
+  ],
+  "guid": "maiq.portableitemspawner",
+  "version": "0.1.0",
+  "require": "0.3.2",
+  "assets": {
+    "patcher": {
+      "hookgen.conf": "deli:monomod.hookgen"
+    },
+    "setup": {
+      "PortableItemSpawner.dll": "deli:assembly"
+    }
+  }
+}
