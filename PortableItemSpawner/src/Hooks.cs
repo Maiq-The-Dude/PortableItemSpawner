@@ -38,7 +38,7 @@ namespace PortableItemSpawner
 				// Delete all unneeded components & children
 				GameObject.Destroy(panelObject.GetComponent<OptionsPanel_Screenmanager>());
 				var panelTransform = panelObject.transform;
-				Plugin.Instance.DeleteAllBut(panelTransform, _rootKeep);
+				DeleteAllBut(panelTransform, _rootKeep);
 
 				// Fix button placement
 				var btnTransform = panelTransform.Find("LockButton").transform;
@@ -117,6 +117,18 @@ namespace PortableItemSpawner
 			orig(self);
 
 			self.ItemSpawner.SetActive(true);
+		}
+
+		private void DeleteAllBut(Transform parent, HashSet<string> exceptions)
+		{
+			for (var i = parent.childCount - 1; i >= 0; i--)
+			{
+				var child = parent.GetChild(i);
+				if (!exceptions.Contains(child.name))
+				{
+					GameObject.Destroy(child.gameObject);
+				}
+			}
 		}
 	}
 }
