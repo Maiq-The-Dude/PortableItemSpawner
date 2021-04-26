@@ -25,9 +25,6 @@
       <Reference Include="MMHOOK_Assembly-CSharp">
         <HintPath>..\libs\MMHOOK_Assembly-CSharp.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.UI">
-        <HintPath>..\libs\UnityEngine.UI.dll</HintPath>
-      </Reference>
     </ItemGroup>
 
 </Project>

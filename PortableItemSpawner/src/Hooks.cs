@@ -104,11 +104,8 @@ namespace PortableItemSpawner
 		{
 			orig(self);
 
-			_itemSpawner = GameObject.Find("ItemSpawner");
-			if (_itemSpawner == null)
-			{
-				_itemSpawner = GameObject.Find("_ItemSpawner");
-			}
+			// Get ItemSpawner from the Canvas
+			_itemSpawner = self.transform.parent.parent.gameObject;
 		}
 
 		// Enable itemspawner on death to vault match gun
