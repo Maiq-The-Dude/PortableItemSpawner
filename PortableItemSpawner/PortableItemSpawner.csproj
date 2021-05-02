@@ -13,7 +13,8 @@
     </ItemGroup>
     
     <ItemGroup>
-      <PackageReference Include="Deli" Version="0.3.0" />
+      <PackageReference Include="Deli" Version="0.3.2" />
+      <PackageReference Include="Deli.H3VR" Version="0.1.1" />
         
       <PackageReference Include="jnm2.ReferenceAssemblies.net35" Version="1.0.1" PrivateAssets="all" />
     </ItemGroup>

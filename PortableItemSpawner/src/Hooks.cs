@@ -1,6 +1,5 @@
-﻿using FistVR;
-using System;
-using System.Collections.Generic;
+﻿using Deli.H3VR.Api;
+using FistVR;
 using UnityEngine;
 
 namespace PortableItemSpawner
@@ -9,15 +8,6 @@ namespace PortableItemSpawner
 	{
 		private GameObject _itemSpawner;
 
-		private readonly HashSet<string> _rootKeep = new()
-		{
-			"OptionsPanelProto",
-			"_PoseOverride",
-			"Phys",
-			"LockButton",
-			"Cube",
-		};
-		private GameObject _optionsPanelPrefab;
 		private FVRPhysicalObject _portableItemSpawner;
 		public FVRPhysicalObject PortableItemSpawner
 		{
@@ -28,21 +18,14 @@ namespace PortableItemSpawner
 					return _portableItemSpawner;
 				}
 
-				if (_optionsPanelPrefab is null)
-				{
-					throw new InvalidOperationException("The donor options panel prefab is null!");
-				}
-
 				// Get prefab from wristmenu
-				var panelObject = GameObject.Instantiate(_optionsPanelPrefab, Vector3.zero, Quaternion.identity);
+				var panelObject = LockablePanel.GetCleanLockablePanel();
 				panelObject.name = "PortableItemSpawner";
 
-				// Delete all unneeded components & children
-				GameObject.Destroy(panelObject.GetComponent<OptionsPanel_Screenmanager>());
-				var panelTransform = panelObject.transform;
-				DeleteAllBut(panelTransform, _rootKeep);
-
 				// Fix button placement
+				var panelTransform = panelObject.transform;
+				panelTransform.localPosition = Vector3.zero;
+				panelTransform.localRotation = Quaternion.identity;
 				var btnTransform = panelTransform.Find("LockButton");
 				btnTransform.localPosition = new Vector3(0.2185f, 0.1135f, -0.12f);
 				btnTransform.rotation = Quaternion.Euler(270, 0, 180);
@@ -63,6 +46,7 @@ namespace PortableItemSpawner
 		}
 		public Hooks()
 		{
+
 			Hook();
 		}
 
@@ -73,12 +57,6 @@ namespace PortableItemSpawner
 
 		private void Hook()
 		{
-			// Get the options panel prefab
-			On.FistVR.FVRWristMenu.Awake += (orig, self) => {
-				orig(self);
-				_optionsPanelPrefab = self.OptionsPanelPrefab;
-			};
-
 			// Get the ItemSpawner gameobject
 			On.FistVR.ItemSpawnerUI.Start += (orig, self) => {
 				orig(self);
@@ -111,18 +89,6 @@ namespace PortableItemSpawner
 				{
 					PortableItemSpawner.transform.position = self.m_currentHand.transform.position + GM.CurrentPlayerBody.Head.transform.forward;
 					PortableItemSpawner.transform.rotation = Quaternion.Euler(270, 0, 0);
-				}
-			}
-		}
-
-		private void DeleteAllBut(Transform parent, HashSet<string> exceptions)
-		{
-			for (var i = parent.childCount - 1; i >= 0; i--)
-			{
-				var child = parent.GetChild(i);
-				if (!exceptions.Contains(child.name))
-				{
-					GameObject.Destroy(child.gameObject);
 				}
 			}
 		}
