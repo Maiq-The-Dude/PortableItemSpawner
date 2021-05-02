@@ -18,14 +18,14 @@ namespace PortableItemSpawner
 					return _portableItemSpawner;
 				}
 
-				// Get prefab from wristmenu
+				// Get panel prefab from Deli
 				var panelObject = LockablePanel.GetCleanLockablePanel();
 				panelObject.name = "PortableItemSpawner";
-
-				// Fix button placement
 				var panelTransform = panelObject.transform;
 				panelTransform.localPosition = Vector3.zero;
 				panelTransform.localRotation = Quaternion.identity;
+
+				// Fix button placement
 				var btnTransform = panelTransform.Find("LockButton");
 				btnTransform.localPosition = new Vector3(0.2185f, 0.1135f, -0.12f);
 				btnTransform.rotation = Quaternion.Euler(270, 0, 180);
