@@ -44,18 +44,8 @@ namespace PortableItemSpawner
 				return _portableItemSpawner;
 			}
 		}
-		public Hooks()
-		{
 
-			Hook();
-		}
-
-		public void Dispose()
-		{
-			Unhook();
-		}
-
-		private void Hook()
+		public void Hook()
 		{
 			// Get the ItemSpawner gameobject
 			On.FistVR.ItemSpawnerUI.Start += (orig, self) => {
@@ -72,7 +62,7 @@ namespace PortableItemSpawner
 			On.FistVR.FVRWristMenu.SpawnOptionsPanel += FVRWristMenu_SpawnOptionsPanel;
 		}
 
-		private void Unhook()
+		public void Unhook()
 		{
 			On.FistVR.FVRWristMenu.SpawnOptionsPanel -= FVRWristMenu_SpawnOptionsPanel;
 		}
@@ -84,11 +74,12 @@ namespace PortableItemSpawner
 
 			if (_itemSpawner != null)
 			{
-				var maxDist = 2;
-				if (PortableItemSpawner == null || Vector3.Distance(GM.CurrentPlayerBody.Head.position, PortableItemSpawner.transform.position) > maxDist)
+				var maxDist = 4;
+				var portableItemSpawner = PortableItemSpawner;
+				if (portableItemSpawner == null || (GM.CurrentPlayerBody.Head.position - portableItemSpawner.transform.position).sqrMagnitude > maxDist)
 				{
-					PortableItemSpawner.transform.position = self.m_currentHand.transform.position + GM.CurrentPlayerBody.Head.transform.forward;
-					PortableItemSpawner.transform.rotation = Quaternion.Euler(270, 0, 0);
+					portableItemSpawner.transform.position = self.m_currentHand.transform.position + GM.CurrentPlayerBody.Head.transform.forward;
+					portableItemSpawner.transform.rotation = Quaternion.LookRotation(GM.CurrentPlayerBody.Head.position - portableItemSpawner.transform.position)*Quaternion.Euler(270,0,0);
 				}
 			}
 		}
