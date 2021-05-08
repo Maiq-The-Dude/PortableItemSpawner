@@ -11,10 +11,5 @@ namespace PortableItemSpawner
 			_hooks = new Hooks();
 			_hooks.Hook();
 		}
-
-		private void OnDestroy()
-		{
-			_hooks.Unhook();
-		}
 	}
 }

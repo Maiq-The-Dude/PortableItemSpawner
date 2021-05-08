@@ -47,6 +47,8 @@ namespace PortableItemSpawner
 
 		public void Hook()
 		{
+			WristMenu.RegisterWristMenuButton("Spawn ItemSpawner Panel", WristMenuButtonClicked);
+
 			// Get the ItemSpawner gameobject
 			On.FistVR.ItemSpawnerUI.Start += (orig, self) => {
 				orig(self);
@@ -58,29 +60,18 @@ namespace PortableItemSpawner
 				orig(self);
 				self.ItemSpawner.SetActive(true);
 			};
-
-			On.FistVR.FVRWristMenu.SpawnOptionsPanel += FVRWristMenu_SpawnOptionsPanel;
-		}
-
-		public void Unhook()
-		{
-			On.FistVR.FVRWristMenu.SpawnOptionsPanel -= FVRWristMenu_SpawnOptionsPanel;
 		}
 
 		// Spawn our panel whenever options panel is clicked
-		private void FVRWristMenu_SpawnOptionsPanel(On.FistVR.FVRWristMenu.orig_SpawnOptionsPanel orig, FVRWristMenu self)
+		private void WristMenuButtonClicked(FVRWristMenu wristMenu)
 		{
-			orig(self);
-
 			if (_itemSpawner != null)
 			{
-				var maxDist = 4;
-				var portableItemSpawner = PortableItemSpawner;
-				if (portableItemSpawner == null || (GM.CurrentPlayerBody.Head.position - portableItemSpawner.transform.position).sqrMagnitude > maxDist)
-				{
-					portableItemSpawner.transform.position = self.m_currentHand.transform.position + GM.CurrentPlayerBody.Head.transform.forward;
-					portableItemSpawner.transform.rotation = Quaternion.LookRotation(GM.CurrentPlayerBody.Head.position - portableItemSpawner.transform.position)*Quaternion.Euler(270,0,0);
-				}
+				wristMenu.m_currentHand.RetrieveObject(PortableItemSpawner);
+			}
+			else
+			{
+				wristMenu.Aud.PlayOneShot(wristMenu.AudClip_Err);
 			}
 		}
 	}
