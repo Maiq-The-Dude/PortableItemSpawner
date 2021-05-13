@@ -6,6 +6,8 @@ namespace PortableItemSpawner
 {
 	public class Hooks
 	{
+		private readonly H3Api _api = H3Api.Instance;
+
 		private GameObject _itemSpawner;
 
 		private FVRPhysicalObject _portableItemSpawner;
@@ -19,7 +21,7 @@ namespace PortableItemSpawner
 				}
 
 				// Get panel prefab from Deli
-				var panelObject = LockablePanel.GetCleanLockablePanel();
+				var panelObject = _api.GetCleanLockablePanel();
 				panelObject.name = "PortableItemSpawner";
 				var panelTransform = panelObject.transform;
 				panelTransform.localPosition = Vector3.zero;
@@ -39,7 +41,7 @@ namespace PortableItemSpawner
 				_portableItemSpawner = panelObject.GetComponent<FVRPhysicalObject>();
 				_portableItemSpawner.SetIsKinematicLocked(true);
 				_portableItemSpawner.m_colliders = _portableItemSpawner.GetComponentsInChildren<Collider>(true);
-				_portableItemSpawner.PoseOverride.transform.rotation = Quaternion.Euler(40, 0, 0);
+				_portableItemSpawner.PoseOverride.transform.rotation = Quaternion.Euler(0, 0, 0);
 
 				return _portableItemSpawner;
 			}
@@ -47,7 +49,8 @@ namespace PortableItemSpawner
 
 		public void Hook()
 		{
-			WristMenu.RegisterWristMenuButton("Spawn ItemSpawner Panel", WristMenuButtonClicked);
+			// Create our button
+			_api.WristMenuButtons.Add(new WristMenuButton("Spawn ItemSpawner Panel", SpawnItemSpawner));
 
 			// Get the ItemSpawner gameobject
 			On.FistVR.ItemSpawnerUI.Start += (orig, self) => {
@@ -62,9 +65,9 @@ namespace PortableItemSpawner
 			};
 		}
 
-		// Spawn our panel whenever options panel is clicked
-		private void WristMenuButtonClicked(FVRWristMenu wristMenu)
+		private void SpawnItemSpawner(H3Api api, WristMenuButton caller)
 		{
+			var wristMenu = api.WristMenu;
 			if (_itemSpawner != null)
 			{
 				wristMenu.m_currentHand.RetrieveObject(PortableItemSpawner);

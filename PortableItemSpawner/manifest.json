@@ -4,10 +4,10 @@
     "M'aiq"
   ],
   "guid": "maiq.portableitemspawner",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "require": "0.3.2",
   "dependencies": {
-    "deli.h3vr": "0.1.0"
+    "deli.h3vr": "0.2.0"
   },
   "assets": {
     "patcher": {
