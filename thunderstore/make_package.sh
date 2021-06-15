@@ -7,13 +7,13 @@ cd $TS_DIR
 rm PortableItemSpawner.zip
 
 # Create our temp folders
-mkdir -p TEMP/PortableItemSpawner/plugins
+mkdir -p TEMP/
 
 # Copy the files into them
 cp manifest.json TEMP/manifest.json
 cp icon.png TEMP/icon.png
 cp ../README.md TEMP/README.md
-cp ../src/PortableItemSpawner/bin/Release/net35/PortableItemSpawner.dll TEMP/PortableItemSpawner/plugins/PortableItemSpawner.dll
+cp ../src/PortableItemSpawner/bin/Release/net35/PortableItemSpawner.dll TEMP/PortableItemSpawner.dll
 
 # Modify the version number
 sed -i "s/{VERSION}/$VERSION/g" TEMP/manifest.json
