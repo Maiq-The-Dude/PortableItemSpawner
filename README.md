@@ -8,4 +8,4 @@ Requires
 - [BepInEx 5.4.x](https://github.com/BepInEx/BepInEx/releases)
 - [Sodalite](https://github.com/H3VR-Modding/Sodalite/releases)
 
-Download the [latest release of PortableItemSpawner](https://github.com/Maiq-The-Dude/PortableItemSpawner/releases/latest) and extract the `.zip` into the BepInEx plugins folder.
+Download the [PortableItemSpawner.zip](https://github.com/Maiq-The-Dude/PortableItemSpawner/releases/latest), then drag `PortableItemSpawner.dll` within into the `h3vr/bepinex/plugins/` directory
