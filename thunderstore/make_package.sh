@@ -13,7 +13,7 @@ mkdir -p TEMP/PortableItemSpawner/plugins
 cp manifest.json TEMP/manifest.json
 cp icon.png TEMP/icon.png
 cp ../README.md TEMP/README.md
-cp ../PortableItemSpawner/PortableItemSpawner/bin/Release/net35/PortableItemSpawner.dll TEMP/PortableItemSpawner/plugins/PortableItemSpawner.dll
+cp ../src/PortableItemSpawner/bin/Release/net35/PortableItemSpawner.dll TEMP/PortableItemSpawner/plugins/PortableItemSpawner.dll
 
 # Modify the version number
 sed -i "s/{VERSION}/$VERSION/g" TEMP/manifest.json
