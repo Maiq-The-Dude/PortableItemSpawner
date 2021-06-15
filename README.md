@@ -5,7 +5,9 @@
 
 ## Manual Installation
 Requires 
-- [BepInEx 5.4.x](https://github.com/BepInEx/BepInEx/releases)
-- [Sodalite](https://github.com/H3VR-Modding/Sodalite/releases)
+- [BepInEx 5.4.x](https://github.com/BepInEx/BepInEx)
+- [BepInEx.Monomod.Loader](https://github.com/BepInEx/BepInEx.MonoMod.Loader)
+- [BepInEx.Monomod.HookGenPatcher](https://github.com/harbingerofme/Bepinex.Monomod.HookGenPatcher)
+- [Sodalite](https://github.com/H3VR-Modding/Sodalite)
 
 Download the [PortableItemSpawner.zip](https://github.com/Maiq-The-Dude/PortableItemSpawner/releases/latest), then drag `PortableItemSpawner.dll` within into the `h3vr/bepinex/plugins/` directory
