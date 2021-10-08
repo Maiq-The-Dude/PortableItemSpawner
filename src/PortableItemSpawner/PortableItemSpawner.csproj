@@ -6,7 +6,8 @@
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
     
-    <ItemGroup>        
+    <ItemGroup>
+      <PackageReference Include="BepInEx.Core" Version="5.4.16" />
       <PackageReference Include="H3VR.GameLibs" Version="0.100.2-r.1" />        
       <PackageReference Include="jnm2.ReferenceAssemblies.net35" Version="1.0.1" PrivateAssets="all" />    
       <PackageReference Include="Sodalite" Version="1.1.0" />
