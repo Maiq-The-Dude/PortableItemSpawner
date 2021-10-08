@@ -1,11 +1,12 @@
 ﻿using BepInEx;
 using FistVR;
+using Sodalite;
 using Sodalite.Api;
 using UnityEngine;
 
 namespace PortableItemSpawner
 {
-	[BepInPlugin("maiq.PortableItemSpawner", "PortableItemSpawner", "1.4.0")]
+	[BepInPlugin("maiq.PortableItemSpawner", "PortableItemSpawner", "1.5.0")]
 	[BepInDependency("nrgill28.Sodalite")]
 	[BepInProcess("h3vr.exe")]
 	public class Plugin : BaseUnityPlugin
@@ -46,6 +47,8 @@ namespace PortableItemSpawner
 				_portableItemSpawner.m_colliders = _portableItemSpawner.GetComponentsInChildren<Collider>(true);
 				_portableItemSpawner.PoseOverride.transform.rotation = Quaternion.Euler(0, 0, 0);
 
+				DontDestroyOnLoad(PortableItemSpawner.gameObject);
+
 				return _portableItemSpawner;
 			}
 		}
@@ -75,7 +78,7 @@ namespace PortableItemSpawner
 			};
 		}
 
-		private void SpawnItemSpawner()
+		private void SpawnItemSpawner(object sender, ButtonClickEventArgs args)
 		{
 			var wristMenu = WristMenuAPI.Instance;
 			if (_itemSpawner != null)
