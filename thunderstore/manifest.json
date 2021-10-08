@@ -1,8 +1,8 @@
 {
     "name": "PortableItemSpawner",
-    "version_number": "1.4.0",
+    "version_number": "1.5.0",
     "dependencies": [
-        "nrgill28-Sodalite-1.0.0"
+        "nrgill28-Sodalite-1.1.0"
     ],
     "description": "Adds a portable ItemSpawner panel that can be spawned via the wristmenu.",
     "website_url": "https://github.com/Maiq-The-Dude/PortableItemSpawner"
