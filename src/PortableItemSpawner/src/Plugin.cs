@@ -47,8 +47,6 @@ namespace PortableItemSpawner
 				_portableItemSpawner.m_colliders = _portableItemSpawner.GetComponentsInChildren<Collider>(true);
 				_portableItemSpawner.PoseOverride.transform.rotation = Quaternion.Euler(0, 0, 0);
 
-				DontDestroyOnLoad(PortableItemSpawner.gameObject);
-
 				return _portableItemSpawner;
 			}
 		}
